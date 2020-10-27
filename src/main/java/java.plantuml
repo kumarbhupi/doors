@@ -1,0 +1,103 @@
+@startuml
+
+title __DOOR EXERCISE__\n
+
+
+    class BaseDoor {
+        {static} ~ logger : Logger
+        - id : String
+        - isOpen : boolean
+        + BaseDoor()
+        + getId()
+        + isOpen()
+        + open()
+        + receiveInput()
+    }
+  
+
+
+    class CodeProcessor {
+        {static} ~ logger : Logger
+        {static} - MaxNumTrials : int
+        - locked : boolean
+        - numTrials : int
+        - openCode : String
+        - unlockCode : String
+        + CodeProcessor()
+        + getId()
+        + receiveInput()
+    }
+
+  
+
+
+    class CodeRecorder {
+        {static} ~ logger : Logger
+        - recorderFormatList : List<RecorderFormat>
+        + CodeRecorder()
+        + printLog()
+        + receiveInput()
+    }
+
+  
+
+
+    class CodeRecorder.RecorderFormat {
+        - input : String
+        - time : LocalDateTime
+        + RecorderFormat()
+        + toString()
+    }
+
+  
+
+
+    interface Door {
+        {abstract} + getId()
+        {abstract} + isOpen()
+        {abstract} + open()
+        {abstract} + receiveInput()
+    }
+
+  
+
+
+    abstract class DoorAccessory {
+        + DoorAccessory()
+        + getId()
+        + isOpen()
+        + open()
+        + receiveInput()
+    }
+
+  
+
+
+    class FireAlarm {
+        {static} ~ logger : Logger
+        - fireAlarmCode : String
+        + FireAlarm()
+        + getId()
+        + open()
+        + receiveInput()
+        - fireAlarm()
+    }
+
+  
+
+
+    class Main {
+        {static} + main()
+    }
+
+  
+
+  BaseDoor .up.|> Door
+  CodeProcessor -up-|> DoorAccessory
+  CodeRecorder -up-|> DoorAccessory
+  CodeRecorder +-down- CodeRecorder.RecorderFormat
+  DoorAccessory .up.|> Door
+  DoorAccessory o-- Door : core
+  FireAlarm -up-|> DoorAccessory
+
+@enduml
