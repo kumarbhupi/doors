@@ -34,14 +34,13 @@ public class Main {
 
     Door codeProcessorDoor = new CodeProcessor(recordCodes, "SOY YO", "ABRE");
 
-    Door fireAlarmDoor = new FireAlarm(codeProcessorDoor, "ALBERTO");
-    //fireAlarmDoor.receiveInput("ALBERTO");
+    Door fireAlarmDoor = new FireAlarm(codeProcessorDoor, "ALB");
 
     fireAlarmDoor.receiveInput("SOY YO");
 
     System.out.println("-------------");
 
-    fireAlarmDoor.receiveInput("ALBERTO");
+    fireAlarmDoor.receiveInput("ALB");
 
 
 
