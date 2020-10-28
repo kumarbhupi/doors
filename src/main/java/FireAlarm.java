@@ -13,6 +13,7 @@ public class FireAlarm extends DoorAccessory{
   @Override
   public void receiveInput(String inputCode) {
     if (inputCode.equals(fireAlarmCode)){
+      fireAlarm();
       open();
     }
     super.receiveInput(inputCode);
@@ -23,12 +24,6 @@ public class FireAlarm extends DoorAccessory{
     return super.getId();
   }
 
-  @Override
-  public void open() {
-    super.open();
-    fireAlarm();
-
-  }
   private void fireAlarm(){
     logger.info("FireAlarm-{} - secretly fire alarm",getId());
   }
